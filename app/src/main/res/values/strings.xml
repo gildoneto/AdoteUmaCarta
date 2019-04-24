@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Adote Uma Carta</string>
+    <string name="text_01">ADOTE UMA CARTA E FAÇA UMA CRIANÇA FELIZ NESTE NATAL</string>
+    <string name="btn_escola">ESCOLAS</string>
+    <string name="btn_carta">CARTAS</string>
+    <string name="btn_cadastro">CADASTRO</string>
+    <string name="btn_adocao">ADOÇÃO</string>
+    <string name="label_principal">Adote uma Carta - 2019</string>
+    <string name="label_escola">Lista de Escolas Cadastradas 2019</string>
+    <string name="img_santa">Papai Noel</string>
+</resources>

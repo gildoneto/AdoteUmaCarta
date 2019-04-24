@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+<TextView
+    android:id="@+id/txvNomeEscola"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:padding="10dp"
+    android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/txvNomeDiretor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txvNomeEscola"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/txvId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txvNomeDiretor"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"/>
+
+</RelativeLayout>
