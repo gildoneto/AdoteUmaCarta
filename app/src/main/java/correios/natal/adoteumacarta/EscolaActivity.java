@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -20,9 +19,6 @@ public class EscolaActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escola);
-
-
-
 
     }
 
@@ -59,6 +55,6 @@ public class EscolaActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-       mCursor.close();
+        mCursor.close();
     }
 }

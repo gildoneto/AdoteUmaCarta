@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity"
-            android:label="@string/label_principal">
+
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -19,10 +19,19 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MainActivity"
+            android:label="@string/label_principal"/>
+
         <activity android:name=".EscolaActivity"
             android:label="@string/label_escola">
-
         </activity>
+
+        <activity android:name=".CartaActivity"
+            android:label="@string/label_carta">
+        </activity>
+        <activity android:name=".CadastroActivity" />
+
+
     </application>
 
 </manifest>

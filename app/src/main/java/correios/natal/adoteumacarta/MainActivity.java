@@ -1,8 +1,6 @@
 package correios.natal.adoteumacarta;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,10 +15,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btnescola = findViewById(R.id.btn_escola);
+        Button btncarta = findViewById(R.id.btn_carta);
+
         btnescola.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), EscolaActivity.class));
+            }
+        });
+
+        btncarta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), CartaActivity.class));
             }
         });
 
