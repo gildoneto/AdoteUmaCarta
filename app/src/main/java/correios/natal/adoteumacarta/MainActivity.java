@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnescola = findViewById(R.id.btn_escola);
         Button btncarta = findViewById(R.id.btn_carta);
+        Button btncadastro = findViewById(R.id.btn_cadastro);
 
         btnescola.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), CartaActivity.class));
+            }
+        });
+
+        btncadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), CadastroActivity.class));
             }
         });
 

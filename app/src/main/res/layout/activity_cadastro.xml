@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@drawable/gradbg">
+
+<ImageView
+    android:contentDescription="@string/desc_text_foto"
+    android:id="@+id/foto_view"
+    android:scaleType="centerCrop"
+    android:layout_width="200dp"
+    android:layout_height="200dp" />
+    
+    <Button
+        android:id="@+id/capture_img_btn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundbtn"
+        android:layout_below="@+id/foto_view"
+        android:layout_marginStart="30dp"
+        android:text="@string/btn_capture_image"/>
+
+</RelativeLayout>

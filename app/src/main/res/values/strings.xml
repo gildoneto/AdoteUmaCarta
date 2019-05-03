@@ -10,4 +10,6 @@
     <string name="label_carta">Cartas dos Alunos</string>
     <string name="img_santa">Papai Noel</string>
     <string name="splash_text">FAÇA UMA CRIANÇA FELIZ NESSE NATAL!</string>
+    <string name="btn_capture_image">Capturar Foto</string>
+    <string name="desc_text_foto">Foto do Usuário</string>
 </resources>
