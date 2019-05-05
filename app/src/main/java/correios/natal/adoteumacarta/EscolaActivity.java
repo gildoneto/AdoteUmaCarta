@@ -29,10 +29,10 @@ public class EscolaActivity extends AppCompatActivity {
         DBHelper db = new DBHelper(getBaseContext());
         SQLiteDatabase banco = db.getReadableDatabase();
 
-        mCursor = banco.rawQuery("SELECT nome, diretor, _id FROM escola", null);
+        mCursor = banco.rawQuery("SELECT escola, diretor, _id FROM escola", null);
 
         String[] from = {
-                "nome",
+                "escola",
                 "diretor",
                 "_id"
         };

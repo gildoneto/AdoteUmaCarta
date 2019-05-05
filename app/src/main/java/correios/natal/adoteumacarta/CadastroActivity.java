@@ -1,95 +1,105 @@
 package correios.natal.adoteumacarta;
 
-import android.Manifest;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.EditText;
+import android.support.annotation.Nullable;
 
+public class CadastroActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class CadastroActivity extends AppCompatActivity {
+    private EditText editTextNome;
+    private EditText editTextCell;
+    private EditText editTextGift;
+    private EditText editTextStatus;
+    private Button buttonExcluir;
+    private Button buttonSalvar;
+    private Button buttonCancelar;
 
-    private static final int PERMISSION_CODE = 1000;
-    private static final int IMAGE_CAPTURE_CODE = 1001;
-
-    Button mCaptureBtn;
-    ImageView mImageView;
-
-    Uri image_uri;
+    private final Doador doador = new Doador(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        mImageView = findViewById(R.id.foto_view);
-        mCaptureBtn = findViewById(R.id.capture_img_btn);
+        editTextNome = findViewById(R.id.editTextNome);
+        editTextCell = findViewById(R.id.editTextCell);
+        editTextGift = findViewById(R.id.editTextGift);
+        editTextStatus = findViewById(R.id.editTextStatus);
+        buttonExcluir = findViewById(R.id.btnExcluir);
+        buttonCancelar = findViewById(R.id.btnCancelar);
+        buttonSalvar = findViewById(R.id.btnSalvar);
 
-        mCaptureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //se o sistema for >= marsmallow,
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.CAMERA) ==
-                            PackageManager.PERMISSION_DENIED ||
-                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                                    PackageManager.PERMISSION_DENIED) {
+        buttonExcluir.setOnClickListener(this);
+        buttonSalvar.setOnClickListener(this);
+        buttonCancelar.setOnClickListener(this);
 
-                        String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (getIntent().getExtras() != null){
+            setTitle(getString(R.string.titulo_editando));
+            int id = getIntent().getExtras().getInt("consulta");
+            doador.carregaDoadorPeloId(id);
+            editTextNome.setText(doador.getNome());
+            editTextCell.setText(doador.getCell());
+            editTextGift.setText(doador.getGift());
+            editTextStatus.setText(doador.getStatus());
+        }else{
+            setTitle(getString(R.string.titulo_incluindo));
+        }
 
-                        requestPermissions(permission, PERMISSION_CODE);
-                    }
-                    else {
-                        openCamera();
-                    }
-                }
-                 else {
-                        openCamera();
-                }
-
-            }
-        });
+        buttonExcluir.setEnabled(true);
+        if (doador.getId() == -1)
+            buttonExcluir.setEnabled(false);
     }
 
-    private void openCamera(){
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "Nova Foto");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "Da Câmera");
-        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-        //Intent da câmera
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
-        startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE);
-    }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED) {
-                openCamera();
-            } else {
-                Toast.makeText(this, "Permissão negada, vacilão", Toast.LENGTH_SHORT).show();
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnCancelar : {
+                finish();
+                break;
+            }
+            case R.id.btnExcluir : {
+                doador.excluir();
+                finish();
+                break;
+            }
+            case R.id.btnSalvar :{
+                boolean valido = true;
+                doador.setNome(editTextNome.getText().toString().trim());
+                doador.setCell(editTextCell.getText().toString().trim());
+                doador.setGift(editTextGift.getText().toString().trim());
+                doador.setStatus(editTextStatus.getText().toString().trim());
+
+                if (doador.getNome().equals("")){
+                    editTextNome.setError(getString(R.string.obrigatorio));
+                    valido = false;
+                }
+
+                if (doador.getCell().equals("")){
+                    editTextCell.setError(getString(R.string.obrigatorio));
+                    valido = false;
+                }
+
+                if (doador.getGift().equals("")){
+                    editTextGift.setError(getString(R.string.obrigatorio));
+                    valido = false;
+                }
+
+                if (doador.getStatus().equals("")){
+                    editTextStatus.setError(getString(R.string.obrigatorio));
+                    valido = false;
+                }
+
+                if (valido){
+                    doador.salvar();
+                    finish();
+                }
+                break;
             }
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
-        if (resultCode == RESULT_OK){
-            mImageView.setImageURI(image_uri);
-        }
-    }
 }

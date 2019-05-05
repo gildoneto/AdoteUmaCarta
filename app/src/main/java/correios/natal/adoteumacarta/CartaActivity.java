@@ -21,16 +21,6 @@ public class CartaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
 
-    /*    ListView ltvCartas = findViewById(R.id.ltvCartas);
-
-        //Array de Strings
-
-        String cartas[] = new String[]{"Carro de Controle Remoto", "Bola de Futebol", "Boneca", "Bicicleta",
-                                        "Pokemon Miniatura", "Casa de Boneca", "HQ Homem Aranha"};
-
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(CartaActivity.this, R.layout.lista_carta, cartas);
-
-        ltvCartas.setAdapter(myAdapter); */
 
     }
 

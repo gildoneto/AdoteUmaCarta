@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String NOME_BANCO = "adoteumacarta.db";
+    private static final String NOME_BANCO = "dbadoteumacarta";
     private static final int VERSAO_BANCO = 1;
     public String LOG = "SQLITE";
 
@@ -18,7 +18,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sqlTblEscola = "CREATE TABLE IF NOT EXISTS escola(_id INTEGER PRIMARY KEY, nome VARCHAR(255), diretor VARCHAR(100));";
+        String sqlTblDoador = "CREATE TABLE IF NOT EXISTS doador(_id INTEGER PRIMARY KEY, nome VARCHAR(255), cell VARCHAR(20), gift VARCHAR(100), status VARCHAR(20));";
+        String sqlTblEscola = "CREATE TABLE IF NOT EXISTS escola(_id INTEGER PRIMARY KEY, escola VARCHAR(255), diretor VARCHAR(100));";
         String sqlTblCarta = "CREATE TABLE IF NOT EXISTS carta(_id INTEGER PRIMARY KEY, aluno VARCHAR(255), presente VARCHAR(100));";
 
         String sqlInsEscola = "INSERT INTO escola VALUES"
@@ -46,10 +47,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
        // Log.i(LOG,"antes de sql" + sqlInsEscola.toString());
         db.execSQL(sqlTblEscola);
-        db.execSQL(sqlTblCarta);
-
         db.execSQL(sqlInsEscola);
+
+        db.execSQL(sqlTblCarta);
         db.execSQL(sqlInsCarta);
+
+        db.execSQL(sqlTblDoador);
 
     }
 

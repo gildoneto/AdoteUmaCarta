@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradbg">
+
+
+    
+    <TextView
+        android:id="@+id/txvNomeDoador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome Doador"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/txvCellDoador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_cell"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/txvNomeDoador"/>
+
+    <TextView
+        android:id="@+id/txvGiftDoador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Presente Escolhido"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/txvCellDoador"/>
+
+    <TextView
+        android:id="@+id/txvStatusDoador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status do Presente"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/txvGiftDoador"/>
+
+    
+</RelativeLayout>

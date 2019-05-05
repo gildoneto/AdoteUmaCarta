@@ -2,23 +2,87 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:background="@drawable/gradbg">
 
-<ImageView
-    android:contentDescription="@string/desc_text_foto"
-    android:id="@+id/foto_view"
-    android:scaleType="centerCrop"
-    android:layout_width="200dp"
-    android:layout_height="200dp" />
-    
+
+    <EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:hint="@string/hint_nome"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/editTextCell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextNome"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:hint="@string/hint_cell"
+        android:inputType="phone"/>
+
+    <EditText
+        android:id="@+id/editTextGift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextCell"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:hint="@string/hint_gift"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editTextStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextGift"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:hint="@string/hint_status"
+        android:inputType="text"/>
+
     <Button
-        android:id="@+id/capture_img_btn"
-        android:layout_width="120dp"
+        android:id="@+id/btnCancelar"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@drawable/roundbtn"
-        android:layout_below="@+id/foto_view"
-        android:layout_marginStart="30dp"
-        android:text="@string/btn_capture_image"/>
+        android:text="@string/btn_cancelar"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/editTextStatus"/>
 
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundbtn"
+        android:text="@string/btn_salvar"
+        android:layout_alignBottom="@id/btnCancelar"
+        android:layout_toEndOf="@id/btnCancelar"
+        android:layout_marginStart="14dp" />
+
+    <Button
+        android:id="@+id/btnExcluir"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundbtn"
+        android:text="@string/btn_excluir"
+        android:layout_alignBottom="@id/btnSalvar"
+        android:layout_toEndOf="@id/btnSalvar"
+        android:layout_marginStart="14dp" />
 </RelativeLayout>

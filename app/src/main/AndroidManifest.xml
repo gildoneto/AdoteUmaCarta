@@ -38,6 +38,7 @@
             android:label="@string/label_carta">
         </activity>
         <activity android:name=".CadastroActivity" />
+        <activity android:name=".ConsultaActivity" />
 
 
     </application>
