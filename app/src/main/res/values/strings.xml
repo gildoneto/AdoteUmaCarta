@@ -12,6 +12,13 @@
     <string name="btn_excluir">EXCLUIR</string>
     <string name="btn_fechar">FECHAR</string>
 
+    <string name="dlg_delete_tittle">ATENÇÃO!</string>
+    <string name="dlg_excluir">Tem certeza que deseja excluir esse registro?</string>
+    <string name="dlg_positivo">Sim, excluir cadastro</string>
+    <string name="dlg_negativo">Cancelar exclusão</string>
+    <string name="dlg_toast_delete">Registro excluído!</string>
+    <string name="dlg_toast_cancel">Ação cancelada</string>
+
     <string name="label_principal">Adote uma Carta - 2019</string>
     <string name="label_escola">Lista de Escolas Cadastradas 2019</string>
     <string name="label_carta">Cartas dos Alunos</string>
@@ -19,8 +26,6 @@
     <string name="img_santa">Papai Noel</string>
 
     <string name="splash_text">FAÇA UMA CRIANÇA FELIZ NESSE NATAL!</string>
-
-    <string name="desctext_foto">Foto do Doador</string>
 
     <string name="titulo_incluindo">Incluindo Doador</string>
     <string name="titulo_editando">Editando Doador</string>

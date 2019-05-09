@@ -1,11 +1,14 @@
 package correios.natal.adoteumacarta;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 public class CadastroActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -62,8 +65,7 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
                 break;
             }
             case R.id.btnExcluir : {
-                doador.excluir();
-                finish();
+                dialogDelete();
                 break;
             }
             case R.id.btnSalvar :{
@@ -100,6 +102,33 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
                 break;
             }
         }
+    }
+
+    private AlertDialog alerta;
+
+    private void dialogDelete(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dlg_delete_tittle);
+        builder.setMessage(R.string.dlg_excluir);
+        builder.setPositiveButton(R.string.dlg_positivo, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                doador.excluir();
+                Toast.makeText(getApplicationContext(), R.string.dlg_toast_delete, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.dlg_negativo, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), R.string.dlg_toast_cancel, Toast.LENGTH_SHORT).show();
+            }
+        });
+        //cria o AlertDialog
+        alerta = builder.create();
+        //Exibe
+        alerta.show();
+
     }
 
 }
