@@ -1,9 +1,13 @@
 package correios.natal.adoteumacarta.helpers;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -54,10 +58,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(sqlTblDoador);
 
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    public List<String> getAllPresentes(){
+        List<String> list = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT _id, presente FROM carta";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);//selectQuery,selectedArguments
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(cursor.getString(1));//adding 2nd column data
+            } while (cursor.moveToNext());
+        }
+        // closing connection
+        cursor.close();
+        db.close();
+        // returning lables
+        return list;
+    }
+
 }

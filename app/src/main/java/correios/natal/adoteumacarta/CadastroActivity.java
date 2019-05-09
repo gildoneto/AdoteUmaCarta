@@ -2,15 +2,30 @@ package correios.natal.adoteumacarta;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.support.annotation.Nullable;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class CadastroActivity extends AppCompatActivity implements View.OnClickListener{
+import java.util.ArrayList;
+import java.util.List;
+
+import correios.natal.adoteumacarta.helpers.DBHelper;
+
+public class CadastroActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private EditText editTextNome;
     private EditText editTextCell;
@@ -19,8 +34,12 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonExcluir;
     private Button buttonSalvar;
     private Button buttonCancelar;
+    private Spinner spinnerGift;
+    protected Cursor mCursor;
 
     private final Doador doador = new Doador(this);
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,17 +48,22 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
 
         editTextNome = findViewById(R.id.editTextNome);
         editTextCell = findViewById(R.id.editTextCell);
-        editTextGift = findViewById(R.id.editTextGift);
+        spinnerGift = findViewById(R.id.spinnerGift);
+        //editTextGift = findViewById(R.id.editTextGift);
         editTextStatus = findViewById(R.id.editTextStatus);
         buttonExcluir = findViewById(R.id.btnExcluir);
         buttonCancelar = findViewById(R.id.btnCancelar);
         buttonSalvar = findViewById(R.id.btnSalvar);
 
+        // Loading spinner data from database
+        loadSpinnerData();
+
         buttonExcluir.setOnClickListener(this);
         buttonSalvar.setOnClickListener(this);
         buttonCancelar.setOnClickListener(this);
 
-        if (getIntent().getExtras() != null){
+
+        if (getIntent().getExtras() != null) {
             setTitle(getString(R.string.titulo_editando));
             int id = getIntent().getExtras().getInt("consulta");
             doador.carregaDoadorPeloId(id);
@@ -47,7 +71,7 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
             editTextCell.setText(doador.getCell());
             editTextGift.setText(doador.getGift());
             editTextStatus.setText(doador.getStatus());
-        }else{
+        } else {
             setTitle(getString(R.string.titulo_incluindo));
         }
 
@@ -59,43 +83,43 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnCancelar : {
+        switch (v.getId()) {
+            case R.id.btnCancelar: {
                 finish();
                 break;
             }
-            case R.id.btnExcluir : {
+            case R.id.btnExcluir: {
                 dialogDelete();
                 break;
             }
-            case R.id.btnSalvar :{
+            case R.id.btnSalvar: {
                 boolean valido = true;
                 doador.setNome(editTextNome.getText().toString().trim());
                 doador.setCell(editTextCell.getText().toString().trim());
                 doador.setGift(editTextGift.getText().toString().trim());
                 doador.setStatus(editTextStatus.getText().toString().trim());
 
-                if (doador.getNome().equals("")){
+                if (doador.getNome().equals("")) {
                     editTextNome.setError(getString(R.string.obrigatorio));
                     valido = false;
                 }
 
-                if (doador.getCell().equals("")){
+                if (doador.getCell().equals("")) {
                     editTextCell.setError(getString(R.string.obrigatorio));
                     valido = false;
                 }
 
-                if (doador.getGift().equals("")){
+                if (doador.getGift().equals("")) {
                     editTextGift.setError(getString(R.string.obrigatorio));
                     valido = false;
                 }
 
-                if (doador.getStatus().equals("")){
+                if (doador.getStatus().equals("")) {
                     editTextStatus.setError(getString(R.string.obrigatorio));
                     valido = false;
                 }
 
-                if (valido){
+                if (valido) {
                     doador.salvar();
                     finish();
                 }
@@ -106,7 +130,7 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
 
     private AlertDialog alerta;
 
-    private void dialogDelete(){
+    private void dialogDelete() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dlg_delete_tittle);
         builder.setMessage(R.string.dlg_excluir);
@@ -131,4 +155,31 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        }
+
+
+    private void loadSpinnerData() {
+        DBHelper db = new DBHelper(getApplicationContext());
+        List<String> labels = db.getAllPresentes();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, labels);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerGift.setAdapter(dataAdapter);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 }
