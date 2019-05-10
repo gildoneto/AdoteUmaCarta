@@ -3,19 +3,12 @@ package correios.natal.adoteumacarta;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.support.annotation.Nullable;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +18,7 @@ import java.util.List;
 
 import correios.natal.adoteumacarta.helpers.DBHelper;
 
-public class CadastroActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class CadastroActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextNome;
     private EditText editTextCell;
@@ -34,7 +27,6 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonExcluir;
     private Button buttonSalvar;
     private Button buttonCancelar;
-    private Spinner spinnerGift;
     protected Cursor mCursor;
 
     private final Doador doador = new Doador(this);
@@ -48,15 +40,12 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
 
         editTextNome = findViewById(R.id.editTextNome);
         editTextCell = findViewById(R.id.editTextCell);
-        spinnerGift = findViewById(R.id.spinnerGift);
-        //editTextGift = findViewById(R.id.editTextGift);
+        editTextGift = findViewById(R.id.editTextGift);
         editTextStatus = findViewById(R.id.editTextStatus);
         buttonExcluir = findViewById(R.id.btnExcluir);
         buttonCancelar = findViewById(R.id.btnCancelar);
         buttonSalvar = findViewById(R.id.btnSalvar);
 
-        // Loading spinner data from database
-        loadSpinnerData();
 
         buttonExcluir.setOnClickListener(this);
         buttonSalvar.setOnClickListener(this);
@@ -162,24 +151,4 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
 
         }
 
-
-    private void loadSpinnerData() {
-        DBHelper db = new DBHelper(getApplicationContext());
-        List<String> labels = db.getAllPresentes();
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, labels);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinnerGift.setAdapter(dataAdapter);
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
 }

@@ -30,20 +30,8 @@
         android:hint="@string/hint_cell"
         android:inputType="phone"/>
 
-  <android.support.v7.widget.AppCompatSpinner
-      android:id="@+id/spinnerGift"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/editTextCell"
-      android:layout_marginTop="10dp"
-      android:layout_marginStart="40dp"
-      android:hint="@string/hint_gift"
-      android:backgroundTint="#FFFFFF"
-      android:textSize="18sp"
-      android:textColor="#FFFFFF"
-      android:spinnerMode="dropdown"/>
     
-    <!--  <EditText
+   <EditText
         android:id="@+id/editTextGift"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,13 +42,13 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:hint="@string/hint_gift"
-        android:inputType="text"/> -->
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/editTextStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinnerGift"
+        android:layout_below="@id/editTextGift"
         android:layout_marginTop="10dp"
         android:layout_marginStart="40dp"
         android:backgroundTint="#FFFFFF"
